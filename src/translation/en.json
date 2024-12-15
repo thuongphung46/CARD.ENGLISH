@@ -1,0 +1,125 @@
+{
+  "common": {
+    "helloWorld": "Hello world",
+    "language": "Language",
+    "en": "English",
+    "vi": "Vietnamese",
+    "view_code": "View code",
+    "english_cource": "English Cource",
+    "total_bill": "Total Bill",
+    "pin_code": "Pin Code",
+    "register": "Register",
+    "full_name": "Full Name",
+    "birthday": "Birthday",
+    "phone": "Phone",
+    "expirate_date": "Expirate Date",
+    "upload_image": "Upload Image",
+    "balance": "Balance",
+    "recharge": "Recharge"
+  },
+  "toast_message": {
+    "success": "Success",
+    "add_success": "Add success",
+    "add_fail": "Add fail",
+    "update_success": "Edit success",
+    "update_fail": "Edit fail",
+    "delete_success": "Delete success",
+    "delete_fail": "Delete fail",
+    "recharge_success": "Recharge success"
+  },
+  "sidebar": {
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "extra": "Extra",
+    "module": "Module",
+    "menu": {
+      "home": "Home",
+      "change_pin": "Change Pin",
+      "list_manga": "List manga",
+      "add_manga": "Add manga",
+      "payment": "Payment",
+      "list_category": "List category",
+      "add_category": "Add category",
+      "user": "User",
+      "list_user": "List user",
+      "add_user": "Add user",
+      "recharge": "Recharge",
+      "character": "Character"
+    }
+  },
+  "navbar": {
+    "profile": "Profile",
+    "logout": "Logout",
+    "confirm": {
+      "logout_description": "Are you sure you want to logout?",
+      "logout_title": "Confirm logout",
+      "switch_language_title": "Confirm switch language",
+      "switch_language_description": "Are you sure you want to switch language?",
+      "ok": "Ok",
+      "cancel": "Cancel"
+    }
+  },
+  "datagrid": {
+    "index": "index",
+    "button": {
+      "add_record": "Add record",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "detail": "Detail"
+    },
+    "confirm": {
+      "delete_description": "Are you sure you want to delete this data?",
+      "delete_title": "Confirm delete",
+      "ok": "Ok",
+      "cancel": "Cancel"
+    }
+  },
+  "list_manga": {
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "synopsis": "Synopsis",
+      "image": "Image",
+      "genreIds": "Genre",
+      "authorIds": "Author",
+      "characterIds": "Character"
+    }
+  },
+  "list_author": {
+    "table": {
+      "name": "Name",
+      "birthday": "Birthday",
+      "place": "Place",
+      "bio": "Bio",
+      "image": "Image"
+    }
+  },
+  "list_category": {
+    "table": {
+      "name": "Name",
+      "code": "Code"
+    }
+  },
+  "list_charactor": {
+    "table": {
+      "name": "Name",
+      "birthday": "Birthday",
+      "sign": "Sign",
+      "height": "Height",
+      "weight": "Weight",
+      "bloodType": "Blood type",
+      "shoeSize": "Shoe size",
+      "favoriteFood": "Favorite food",
+      "dislikes": "Dislikes",
+      "bio": "Bio",
+      "image": "Image"
+    }
+  },
+  "confirm": {
+    "save_description": "Are you sure you want to save this data?",
+    "save_title": "Confirm save"
+  }
+}

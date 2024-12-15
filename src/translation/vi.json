@@ -1,0 +1,125 @@
+{
+  "common": {
+    "helloWorld": "Xin chào thế giới",
+    "language": "Ngôn ngữ",
+    "en": "Tiếng Anh",
+    "vi": "Tiếng Việt",
+    "view_code": "Xem mã nguồn",
+    "english_cource": "Khóa học tiếng Anh",
+    "total_bill": "Tổng hóa đơn",
+    "pin_code": "Mã pin",
+    "register": "Đăng ký",
+    "full_name": "Họ và tên",
+    "birthday": "Ngày sinh",
+    "phone": "Số điện thoại",
+    "expirate_date": "Ngày hết hạn",
+    "upload_image": "Tải ảnh lên",
+    "balance": "Số dư tài khoản",
+    "recharge": "Nạp tiền"
+  },
+  "toast_message": {
+    "success": "Thành công",
+    "add_success": "Thêm thành công",
+    "add_fail": "Thêm thất bại",
+    "update_success": "Chỉnh sửa thành công",
+    "update_fail": "Chỉnh sửa thất bại",
+    "delete_success": "Xóa thành công",
+    "delete_fail": "Xóa thất bại",
+    "recharge_success": "Nạp tiền thành công"
+  },
+  "sidebar": {
+    "theme": "Chủ đề",
+    "light": "Sáng",
+    "dark": "Tối",
+    "extra": "Thêm...",
+    "module": "Mô-đun",
+    "menu": {
+      "home": "Trang chủ",
+      "change_pin": "Đổi mã pin",
+      "list_manga": "Danh sách truyện",
+      "add_manga": "Thêm truyện",
+      "payment": "Thanh toán",
+      "list_category": "Danh sách thể loại",
+      "add_category": "Thêm thể loại",
+      "user": "Người dùng",
+      "list_user": "Danh sách người dùng",
+      "add_user": "Thêm người dùng",
+      "recharge": "Nạp tiền",
+      "character": "Nhân vật"
+    }
+  },
+  "navbar": {
+    "profile": "Hồ sơ",
+    "logout": "Đăng xuất",
+    "confirm": {
+      "logout_description": "Bạn có chắc chắn muốn đăng xuất không?",
+      "logout_title": "Xác nhận đăng xuất",
+      "switch_language_title": "Xác nhận chuyển ngôn ngữ",
+      "switch_language_description": "Bạn có chắc chắn muốn chuyển ngôn ngữ không?",
+      "ok": "Đồng ý",
+      "cancel": "Hủy"
+    }
+  },
+  "datagrid": {
+    "index": "STT",
+    "button": {
+      "add_record": "Thêm mới",
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa",
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "detail": "Chi tiết"
+    },
+    "confirm": {
+      "delete_description": "Bạn có chắc chắn muốn xóa dữ liệu này không?",
+      "delete_title": "Xác nhận xóa",
+      "ok": "Đồng ý",
+      "cancel": "Hủy"
+    }
+  },
+  "list_manga": {
+    "table": {
+      "name": "Tên truyện",
+      "description": "Chi tiết",
+      "synopsis": "Tóm tắt",
+      "image": "Hình ảnh",
+      "genreIds": "Thể loại",
+      "authorIds": "Tác giả",
+      "characterIds": "Nhân vật"
+    }
+  },
+  "list_author": {
+    "table": {
+      "name": "Tên tác giả",
+      "birthday": "Ngày sinh",
+      "place": "Nơi sinh",
+      "bio": "Tiểu sử",
+      "image": "Hình ảnh"
+    }
+  },
+  "list_category": {
+    "table": {
+      "name": "Tên thể loại",
+      "code": "Mã"
+    }
+  },
+  "list_charactor": {
+    "table": {
+      "name": "Tên nhân vật",
+      "birthday": "Ngày sinh",
+      "sign": "Cung hoàng đạo",
+      "height": "Chiều cao",
+      "weight": "Cân nặng",
+      "bloodType": "Nhóm máu",
+      "shoeSize": "Cỡ giày",
+      "favoriteFood": "Món ăn yêu thích",
+      "dislikes": "Không thích",
+      "bio": "Tiểu sử",
+      "image": "Hình ảnh"
+    }
+  },
+  "confirm": {
+    "save_description": "Bạn có chắc chắn muốn lưu dữ liệu này?",
+    "save_title": "Xác nhận lưu"
+  }
+}
