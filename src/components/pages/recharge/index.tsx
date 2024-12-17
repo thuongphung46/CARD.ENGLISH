@@ -1,9 +1,9 @@
-import { RechargeTemplate } from "@/components/templates/recharge";
+import {RechargeTemplate} from "@/components/templates/recharge";
 
 export const RechargePage = () => {
-  return (
-    <div>
-      <RechargeTemplate />
-    </div>
-  );
+    return (
+        <div>
+            <RechargeTemplate/>
+        </div>
+    );
 };

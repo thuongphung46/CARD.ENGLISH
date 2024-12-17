@@ -64,6 +64,7 @@ export const Register = () => {
                     avatarBase64: reader.result as string,
                 }));
             };
+            reader.readAsDataURL(files[0]);
         } else {
             setState((prevState) => ({
                 ...prevState,
