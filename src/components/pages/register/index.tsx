@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -6,18 +6,19 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
+import {useNavigate} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "@/redux/hook";
 import HRMStorage from "@/common/function";
-import { KEY_VALUE } from "@/constants/GlobalConstant";
-import { background } from "@/assets/index";
-import { DateField } from "@/components/atoms/mui/date_field";
+import {KEY_VALUE} from "@/constants/GlobalConstant";
+import {background} from "@/assets/index";
+import {DateField} from "@/components/atoms/mui/date_field";
 import dayjs from "dayjs";
-import { AuthService, IUser } from "@/services/auth";
-import { MESSAGE_CODE } from "@/interfaces/enum";
-import { toastMessage } from "@/components/atoms/toast_message";
-import { t } from "i18next";
+import {AuthService, IUser} from "@/services/auth";
+import {MESSAGE_CODE} from "@/interfaces/enum";
+import {toastMessage} from "@/components/atoms/toast_message";
+import {t} from "i18next";
+import {Avatar, CardHeader} from "@mui/material";
 
 function Copyright(props: any) {
     return (
@@ -40,7 +41,7 @@ function Copyright(props: any) {
 const theme = createTheme();
 export const Register = () => {
     const navigate = useNavigate();
-    const { isLoggedIn } = useAppSelector((state) => state.auth);
+    const {isLoggedIn} = useAppSelector((state) => state.auth);
     const isLoggedInEd = Boolean(HRMStorage.get(KEY_VALUE.TOKEN));
 
     const dispatch = useAppDispatch();
@@ -54,7 +55,7 @@ export const Register = () => {
     });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value, files } = e.target;
+        const {name, value, files} = e.target;
         if (files && files[0]) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -77,15 +78,17 @@ export const Register = () => {
         const result = await AuthService.Register(state);
         if (result.msg_code === MESSAGE_CODE.SUCCESS) {
             toastMessage(t("toast_message.success"), "success");
+        } else {
+            toastMessage(result.message, "error");
         }
     };
 
     const fields = [
-        { id: "fullName", label: "Full Name", name: "fullName", type: "text" },
-        { id: "dateOfBirth", label: "Birth Day", name: "dateOfBirth", type: "date" },
-        { id: "phoneNumber", label: "Phone", name: "phoneNumber", type: "phone" },
-        { id: "expirationDate", label: "Expiration Date", name: "expirationDate", type: "date" },
-        { id: "remainingBalance", label: "Remaining Balance", name: "remainingBalance", type: "number" },
+        {id: "fullName", label: "Full Name", name: "fullName", type: "text"},
+        {id: "dateOfBirth", label: "Birth Day", name: "dateOfBirth", type: "date"},
+        {id: "phoneNumber", label: "Phone", name: "phoneNumber", type: "phone"},
+        {id: "expirationDate", label: "Expiration Date", name: "expirationDate", type: "date"},
+        {id: "remainingBalance", label: "Remaining Balance", name: "remainingBalance", type: "number"},
     ];
 
     useEffect(() => {
@@ -107,8 +110,8 @@ export const Register = () => {
                 backgroundPosition: 'center',
                 animation: 'backgroundAnimation 10s infinite alternate',
                 '@keyframes backgroundAnimation': {
-                    '0%': { backgroundPosition: 'center' },
-                    '100%': { backgroundPosition: 'top' },
+                    '0%': {backgroundPosition: 'center'},
+                    '100%': {backgroundPosition: 'top'},
                 },
             }} maxWidth="xs">
                 <Box
@@ -128,8 +131,8 @@ export const Register = () => {
                         sx={{
                             animation: 'fadeIn 2s',
                             '@keyframes fadeIn': {
-                                from: { opacity: 0 },
-                                to: { opacity: 1 },
+                                from: {opacity: 0},
+                                to: {opacity: 1},
                             },
                             fontWeight: 'bold',
                             color: 'primary.main',
@@ -142,24 +145,24 @@ export const Register = () => {
                         component="form"
                         onSubmit={handleSubmit}
                         noValidate
-                        sx={{ mt: 1 }}
+                        sx={{mt: 1}}
                     >
                         {fields.map((field) => {
                             if (field.type === "date") {
                                 return (
                                     <DateField key={field.id}
-                                        name={field.name}
-                                        label={field.label}
-                                        format="DD/MM/YYYY"
-                                        onChange={(e) => {
-                                            handleChange({
-                                                target: {
-                                                    name: field.name,
-                                                    value: dayjs(e).format("YYYY-MM-DD"),
-                                                }
-                                            } as ChangeEvent<HTMLInputElement>)
+                                               name={field.name}
+                                               label={field.label}
+                                               format="DD/MM/YYYY"
+                                               onChange={(e) => {
+                                                   handleChange({
+                                                       target: {
+                                                           name: field.name,
+                                                           value: dayjs(e).format("YYYY-MM-DD"),
+                                                       }
+                                                   } as ChangeEvent<HTMLInputElement>)
 
-                                        }}
+                                               }}
                                     />
                                 )
                             } else if (field.type === "amount") {
@@ -195,11 +198,18 @@ export const Register = () => {
                                 onChange={handleChange}
                             />
                         </Button>
+                        <CardHeader
+                            avatar={<Avatar sx={{
+                                width: 100,
+                                height: 100,
+                            }} alt="Apple" src={state?.avatarBase64}/>}
+                            titleTypographyProps={{variant: "h2", component: "span"}}
+                        />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Register
                         </Button>
@@ -212,7 +222,7 @@ export const Register = () => {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4, color: "#fff" }} />
+                <Copyright sx={{mt: 8, mb: 4, color: "#fff"}}/>
             </Container>
         </ThemeProvider>
     );
