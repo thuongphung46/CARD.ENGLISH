@@ -53,8 +53,8 @@ export const ListManga: FC<Props> = () => {
         }
     };
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
+        console.log('Update');
         // check dữ liệu có undefined không
         if (!state) return;
         state.remainingBalance = Number(state.remainingBalance);
@@ -88,14 +88,14 @@ export const ListManga: FC<Props> = () => {
                                 label={t(field.label)}
                                 format="DD/MM/YYYY"
                                 sx={{width: "100%", maxWidth: 500}}
-                                value={state?.[field.name as keyof IUser] ? dayjs(state[field.name as keyof IUser] as string) : undefined}
+                                value={state?.[field.name as keyof IUser] ? dayjs(state[field.name as keyof IUser] as string) : null} // dùng null thay vì undefined
                                 onChange={(e) => {
                                     handleChange({
                                         target: {
                                             name: field.name,
                                             value: dayjs(e).format("YYYY-MM-DD"),
                                         }
-                                    } as ChangeEvent<HTMLInputElement>)
+                                    } as ChangeEvent<HTMLInputElement>);
                                 }}
                             />
                         )
@@ -155,9 +155,9 @@ export const ListManga: FC<Props> = () => {
                 }} alt="Apple" src={state?.avatarBase64}/>}
                 titleTypographyProps={{variant: "h2", component: "span"}}
             /><Button
-            type="submit"
+            type="button"
             fullWidth
-
+            onClick={handleSubmit}
             variant="contained"
             sx={{mt: 3, mb: 2, maxWidth: 200}}
         >
