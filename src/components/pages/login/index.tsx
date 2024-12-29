@@ -21,6 +21,8 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageList from "@mui/material/ImageList";
 import { userActions } from "@/redux/slices/userSlice";
 import { t } from "i18next";
+import { IconButton, InputAdornment } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 function Copyright(props: any) {
     return (
@@ -50,6 +52,21 @@ export const SignIn = () => {
     const [state, setstate] = useState({
         pin: "",
     });
+    const [showPasswords, setShowPasswords] = useState({
+        pin: false,
+    });
+
+    const togglePasswordVisibility = (field: keyof typeof showPasswords) => {
+        setShowPasswords((prev) => ({
+            ...prev,
+            [field]: !prev[field],
+        }));
+    };
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
     };
@@ -143,8 +160,25 @@ export const SignIn = () => {
                             name="pin"
                             autoComplete="pin"
                             onChange={onPinChange}
-                            // value={state.email}
                             autoFocus
+                            type={showPasswords.pin ? "text" : "password"}
+                            inputProps={{ maxLength: 6 }}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label={
+                                                showPasswords.pin ? "hide the password" : "display the password"
+                                            }
+                                            onClick={() => togglePasswordVisibility("pin")}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {showPasswords.pin ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                )
+                            }}
                         />
 
                         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', width: '100%' }}>
