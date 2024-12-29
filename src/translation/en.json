@@ -15,7 +15,15 @@
     "expirate_date": "Expirate Date",
     "upload_image": "Upload Image",
     "balance": "Balance",
-    "recharge": "Recharge"
+    "recharge": "Recharge",
+    "wellcome": "Welcome to English course",
+    "connect": "Connect",
+    "unlocked": "Unlocked",
+    "sign_up": "Don't have an account? Sign up",
+    "sign_in": "You have an account? Sign In",
+    "enter_pin": "Enter pin",
+    "update": "Update",
+    "upload_file": "Upload file"
   },
   "toast_message": {
     "success": "Success",
@@ -121,5 +129,20 @@
   "confirm": {
     "save_description": "Are you sure you want to save this data?",
     "save_title": "Confirm save"
+  },
+  "change_pin": {
+    "old_pin": "Old pin",
+    "new_pin": "New pin",
+    "confirm_pin": "Confirm pin"
+  },
+  "page_register": {
+    "register": "Register",
+    "full_name": "Full Name",
+    "birthday": "Birthday",
+    "phone": "Phone",
+    "expirate_date": "Expirate Date",
+    "upload_image": "Upload Image",
+    "balance": "Balance",
+    "recharge": "Recharge"
   }
 }

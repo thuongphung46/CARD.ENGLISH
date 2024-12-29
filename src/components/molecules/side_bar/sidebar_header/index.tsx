@@ -5,6 +5,7 @@ import React from "react";
 interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   rtl: boolean;
+  onClick?: () => void;
 }
 
 const StyledSidebarHeader = styled.div`
@@ -49,14 +50,15 @@ const StyledLogo = styled.div<{ rtl?: boolean }>`
 export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
   children,
   rtl,
+  onClick,
   ...rest
 }) => {
   return (
-    <StyledSidebarHeader {...rest}>
+    <StyledSidebarHeader onClick={onClick} {...rest}>
       <div style={{ display: "flex", alignItems: "center" }}>
         <StyledLogo rtl={rtl}>K</StyledLogo>
         <Typography variant="subtitle1" fontWeight={700} color="#0098e5">
-          Trackie
+          English course
         </Typography>
       </div>
     </StyledSidebarHeader>

@@ -15,7 +15,15 @@
     "expirate_date": "Ngày hết hạn",
     "upload_image": "Tải ảnh lên",
     "balance": "Số dư tài khoản",
-    "recharge": "Nạp tiền"
+    "recharge": "Nạp tiền",
+    "wellcome": "Chào mừng bạn đến với khóa học tiếng Anh",
+    "connect": "Kết nối",
+    "unlocked": "Mở khóa",
+    "sign_up": "Chưa có tài khoản? Đăng ký",
+    "sign_in": "Bạn đã có tài khoản? Đăng nhập",
+    "enter_pin": "Nhập mã pin",
+    "update": "Cập nhật",
+    "upload_file": "Tải lên tệp"
   },
   "toast_message": {
     "success": "Thành công",
@@ -121,5 +129,20 @@
   "confirm": {
     "save_description": "Bạn có chắc chắn muốn lưu dữ liệu này?",
     "save_title": "Xác nhận lưu"
+  },
+  "change_pin": {
+    "old_pin": "Mã pin cũ",
+    "new_pin": "Mã pin mới",
+    "confirm_pin": "Xác nhận mã pin"
+  },
+  "page_register": {
+    "register": "Đăng ký",
+    "full_name": "Họ và tên",
+    "birthday": "Ngày sinh",
+    "phone": "Số điện thoại",
+    "expirate_date": "Ngày hết hạn",
+    "upload_image": "Tải ảnh lên",
+    "balance": "Số dư tài khoản",
+    "recharge": "Nạp tiền"
   }
 }

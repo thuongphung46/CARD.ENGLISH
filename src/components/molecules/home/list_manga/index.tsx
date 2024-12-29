@@ -1,12 +1,12 @@
-import {ChangeEvent, FC, Fragment, useEffect, useMemo, useState} from "react";
+import { ChangeEvent, FC, Fragment, useEffect, useMemo, useState } from "react";
 import Box from "@mui/material/Box";
-import {AuthService, IUser} from "@/services/auth";
-import {DateField} from "@/components/atoms/mui/date_field";
+import { AuthService, IUser } from "@/services/auth";
+import { DateField } from "@/components/atoms/mui/date_field";
 import dayjs from "dayjs";
-import {Avatar, Button, CardHeader, TextField} from "@mui/material";
-import {MESSAGE_CODE} from "@/interfaces/enum";
-import {toastMessage} from "@/components/atoms/toast_message";
-import {t} from "i18next";
+import { Avatar, Button, CardHeader, TextField } from "@mui/material";
+import { MESSAGE_CODE } from "@/interfaces/enum";
+import { toastMessage } from "@/components/atoms/toast_message";
+import { t } from "i18next";
 import EarningCard from "@/components/atoms/card";
 
 interface Props {
@@ -35,7 +35,7 @@ export const ListManga: FC<Props> = () => {
     }, []);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const {name, value, files} = e.target;
+        const { name, value, files } = e.target;
         if (files && files[0]) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -70,10 +70,10 @@ export const ListManga: FC<Props> = () => {
     };
 
     const fields = [
-        {id: "fullName", label: "common.full_name", name: "fullName", type: "text"},
-        {id: "dateOfBirth", label: "common.birthday", name: "dateOfBirth", type: "date"},
-        {id: "phoneNumber", label: "common.phone", name: "phoneNumber", type: "phone"},
-        {id: "expirationDate", label: "common.expirate_date", name: "expirationDate", type: "date"},
+        { id: "fullName", label: "common.full_name", name: "fullName", type: "text", disabled: false },
+        { id: "dateOfBirth", label: "common.birthday", name: "dateOfBirth", type: "date", disabled: false },
+        { id: "phoneNumber", label: "common.phone", name: "phoneNumber", type: "phone", disabled: false },
+        { id: "expirationDate", label: "common.expirate_date", name: "expirationDate", type: "date", disabled: true },
     ];
 
     const renderField = useMemo(() => {
@@ -87,8 +87,9 @@ export const ListManga: FC<Props> = () => {
                                 name={field.name}
                                 label={t(field.label)}
                                 format="DD/MM/YYYY"
-                                sx={{width: "100%", maxWidth: 500}}
+                                sx={{ width: "100%", maxWidth: 500 }}
                                 value={state?.[field.name as keyof IUser] ? dayjs(state[field.name as keyof IUser] as string) : null} // dùng null thay vì undefined
+                                disabled={field.disabled}
                                 onChange={(e) => {
                                     handleChange({
                                         target: {
@@ -105,7 +106,7 @@ export const ListManga: FC<Props> = () => {
                                 key={field.id}
                                 required
                                 fullWidth
-                                sx={{width: "100%", maxWidth: 500}}
+                                sx={{ width: "100%", maxWidth: 500 }}
                                 id={field.id}
                                 label={t(field.label)}
                                 name={field.name}
@@ -126,14 +127,14 @@ export const ListManga: FC<Props> = () => {
         <Box>
             <EarningCard value={
                 new Intl.NumberFormat('vi-VN').format(state?.remainingBalance || 0)}
-                         isLoading={false}
+                isLoading={false}
             />
-            <div style={{height: "20px"}}></div>
+            <div style={{ height: "20px" }}></div>
             <Box
                 component="form"
                 onSubmit={handleSubmit}
                 noValidate
-                sx={{'& .MuiTextField-root': {width: '100%', p: 1}}}
+                sx={{ '& .MuiTextField-root': { width: '100%', p: 1 } }}
             >
                 {renderField}
             </Box>
@@ -152,17 +153,17 @@ export const ListManga: FC<Props> = () => {
                 avatar={<Avatar sx={{
                     width: 100,
                     height: 100,
-                }} alt="Apple" src={state?.avatarBase64}/>}
-                titleTypographyProps={{variant: "h2", component: "span"}}
+                }} alt="Apple" src={state?.avatarBase64} />}
+                titleTypographyProps={{ variant: "h2", component: "span" }}
             /><Button
-            type="button"
-            fullWidth
-            onClick={handleSubmit}
-            variant="contained"
-            sx={{mt: 3, mb: 2, maxWidth: 200}}
-        >
-            Update
-        </Button>
+                type="button"
+                fullWidth
+                onClick={handleSubmit}
+                variant="contained"
+                sx={{ mt: 3, mb: 2, maxWidth: 200 }}
+            >
+                {t("common.update")}
+            </Button>
         </Box>
     );
 };

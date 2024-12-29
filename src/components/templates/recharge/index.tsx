@@ -1,12 +1,14 @@
-import {FC, useCallback, useState} from "react";
-import {AuthorTemplateProps} from "./index.interface";
+import { FC, useCallback, useState } from "react";
+import { AuthorTemplateProps } from "./index.interface";
 import Box from "@mui/material/Box";
-import {Button, FilledInput, FormControl, InputAdornment, InputLabel} from "@mui/material";
-import {useConfirm} from "material-ui-confirm";
-import {t} from "i18next";
-import {AuthService} from "@/services/auth";
-import {MESSAGE_CODE} from "@/interfaces/enum";
-import {toastMessage} from "@/components/atoms/toast_message";
+import { Button, FilledInput, FormControl, InputAdornment, InputLabel } from "@mui/material";
+import { useConfirm } from "material-ui-confirm";
+import { t } from "i18next";
+import { AuthService } from "@/services/auth";
+import { MESSAGE_CODE } from "@/interfaces/enum";
+import { toastMessage } from "@/components/atoms/toast_message";
+import HRMStorage from "@/common/function";
+import { KEY_VALUE } from "@/constants/GlobalConstant";
 
 export const RechargeTemplate: FC<AuthorTemplateProps> = () => {
     const confirm = useConfirm();
@@ -15,7 +17,7 @@ export const RechargeTemplate: FC<AuthorTemplateProps> = () => {
     });
 
     const handleOnChangeField = useCallback((e: any) => {
-        const {value} = e.target;
+        const { value } = e.target;
         setState(
             {
                 remainingBalance: Number(value),
@@ -30,7 +32,11 @@ export const RechargeTemplate: FC<AuthorTemplateProps> = () => {
             cancellationText: t("navbar.confirm.cancel"),
 
         }).then(async () => {
-            const result = await AuthService.Recharge(state.remainingBalance);
+            const memberId = HRMStorage.get(KEY_VALUE.TOKEN);
+            const result = await AuthService.Recharge({
+                memberId: memberId,
+                remainingBalance: state.remainingBalance,
+            });
             if (result.msg_code === MESSAGE_CODE.SUCCESS) {
                 toastMessage(t("toast_message.success"), "success");
             } else {
@@ -40,7 +46,7 @@ export const RechargeTemplate: FC<AuthorTemplateProps> = () => {
     }, [state.remainingBalance]);
     return (
         <Box>
-            <FormControl fullWidth sx={{m: 1, maxWidth: 500}} variant="filled">
+            <FormControl fullWidth sx={{ m: 1, maxWidth: 500 }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-amount"></InputLabel>
                 <FilledInput
                     id="filled-adornment-amount"
@@ -57,7 +63,7 @@ export const RechargeTemplate: FC<AuthorTemplateProps> = () => {
                     }}
                     onChange={handleOnChangeField}
                 />
-                <Button sx={{marginTop: 2}} variant="contained" onClick={handleUpdate}>{t("common.recharge")}</Button>
+                <Button sx={{ marginTop: 2 }} variant="contained" onClick={handleUpdate}>{t("common.recharge")}</Button>
             </FormControl>
         </Box>
     );
