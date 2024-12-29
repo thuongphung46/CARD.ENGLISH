@@ -1,18 +1,19 @@
-import {FC, Fragment, useCallback, useEffect, useState} from "react";
-import {CategoryTemplateProps} from "./index.interface";
+import { FC, Fragment, useCallback, useEffect, useState } from "react";
+import { CategoryTemplateProps } from "./index.interface";
 import Box from "@mui/material/Box";
-import {useConfirm} from "material-ui-confirm";
-import {t} from "i18next";
-import {AuthService, IPayment} from "@/services/auth";
-import {MESSAGE_CODE} from "@/interfaces/enum";
-import {toastMessage} from "@/components/atoms/toast_message";
-import {Button, TextField} from "@mui/material";
+import { useConfirm } from "material-ui-confirm";
+import { t } from "i18next";
+import { AuthService, IPayment } from "@/services/auth";
+import { MESSAGE_CODE } from "@/interfaces/enum";
+import { toastMessage } from "@/components/atoms/toast_message";
+import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import HRMStorage from "@/common/function";
-import {KEY_VALUE} from "@/constants/GlobalConstant";
+import { KEY_VALUE } from "@/constants/GlobalConstant";
 import EarningCard from "@/components/atoms/card";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-export const PaymentTemplate: FC<CategoryTemplateProps> = ({}) => {
+export const PaymentTemplate: FC<CategoryTemplateProps> = ({ }) => {
     const confirm = useConfirm();
     const memberId = HRMStorage.get(KEY_VALUE.TOKEN);
     // const memberId = "81a0e81c-3879-4987-9d8f-328810422e13";
@@ -24,6 +25,20 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({}) => {
         pinCode: "",
         totalMonth: 0
     });
+    const [showPasswords, setShowPasswords] = useState({
+        pin: false,
+    });
+
+    const togglePasswordVisibility = (field: keyof typeof showPasswords) => {
+        setShowPasswords((prev) => ({
+            ...prev,
+            [field]: !prev[field],
+        }));
+    };
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
     useEffect(() => {
         //tính tổng tiền
         const totalBill = state.englishCource.reduce((total: number, item: any) => total + item.price, 0);
@@ -47,7 +62,7 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({}) => {
         fetchUserInfor()
     }, []);
     const handleOnChangeField = useCallback((e: any) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setState((prev) => ({
             ...prev,
             [name]: value
@@ -86,14 +101,14 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({}) => {
     }, [state]);
     return (
         <Fragment> <Box component="form"
-                        sx={{'& .MuiTextField-root': {mt: 1, width: '100%', p: 1,}}}>
+            sx={{ '& .MuiTextField-root': { mt: 1, width: '100%', p: 1, } }}>
             <EarningCard value={
                 new Intl.NumberFormat('vi-VN').format(state.remaningBalance)
-            } isLoading={false}/>
+            } isLoading={false} />
             <Autocomplete
                 autoFocus
                 size="medium"
-                sx={{width: "100%", maxWidth: 1000}}
+                sx={{ width: "100%", maxWidth: 1000 }}
                 filterSelectedOptions
                 onChange={(e, newValue: any) => {
                     handleOnChangeField({
@@ -107,7 +122,7 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({}) => {
                 getOptionKey={(option) => option.price}
                 getOptionLabel={(option) => language === "en" ? option.name_en : option.name_vi}
                 renderOption={
-                    (props, option, {selected}) => {
+                    (props, option, { selected }) => {
                         const formattedPrice = new Intl.NumberFormat('vi-VN').format(option.price);
                         return <li {...props} style={{
                             display: "flex",
@@ -137,7 +152,7 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({}) => {
                 value={state.totalBill}
                 disabled
                 fullWidth
-                sx={{maxWidth: 500}}
+                sx={{ maxWidth: 500 }}
                 defaultValue={0}
             ></TextField>
             <TextField
@@ -147,14 +162,32 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({}) => {
                 value={state.pinCode}
                 onChange={handleOnChangeField}
                 fullWidth
-                sx={{maxWidth: 500}}
+                sx={{ maxWidth: 500 }}
                 defaultValue={0}
+                type={showPasswords.pin ? "text" : "password"}
+                inputProps={{ maxLength: 6 }}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label={
+                                    showPasswords.pin ? "hide the password" : "display the password"
+                                }
+                                onClick={() => togglePasswordVisibility("pin")}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                            >
+                                {showPasswords.pin ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    )
+                }}
             ></TextField>
 
 
         </Box>
-            <Button sx={{minWidth: 100}} variant="contained"
-                    onClick={handleUpdate}>{t("common.register")}</Button></Fragment>
+            <Button sx={{ minWidth: 100 }} variant="contained"
+                onClick={handleUpdate}>{t("common.register")}</Button></Fragment>
     );
 };
 
