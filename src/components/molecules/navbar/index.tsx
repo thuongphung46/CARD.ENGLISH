@@ -15,20 +15,20 @@ import Person2Icon from "@mui/icons-material/Person2";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LinearProgress from "@mui/material/LinearProgress";
-import {ImageList, ImageListItem} from "@mui/material";
-import {t} from "i18next";
+import { ImageList, ImageListItem } from "@mui/material";
+import { t } from "i18next";
 import HRMStorage from "@/common/function";
-import {useAppDispatch, useAppSelector} from "@/redux/hook";
-import {userActions} from "@/redux/slices/userSlice";
-import {useConfirm} from "material-ui-confirm";
-import {KEY_VALUE} from "@/constants/GlobalConstant";
-import {GlobalStyle} from "@/common/color";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { userActions } from "@/redux/slices/userSlice";
+import { useConfirm } from "material-ui-confirm";
+import { KEY_VALUE } from "@/constants/GlobalConstant";
+import { GlobalStyle } from "@/common/color";
 import useWindowDimensions from "@/hook/useWindownDimensions";
-import {AuthService} from "@/services/auth";
-import {MESSAGE_CODE} from "@/interfaces/enum";
-import {useNavigate} from "react-router-dom";
-import {authActions} from "@/redux/slices/authSlice";
-import {toastMessage} from "@components/atoms/toast_message";
+import { AuthService } from "@/services/auth";
+import { MESSAGE_CODE } from "@/interfaces/enum";
+import { useNavigate } from "react-router-dom";
+import { authActions } from "@/redux/slices/authSlice";
+import { toastMessage } from "@components/atoms/toast_message";
 
 interface PrimarySearchAppBarProps {
     setCollapsed: () => void;
@@ -39,17 +39,17 @@ interface PrimarySearchAppBarProps {
 }
 
 export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
-                                                                            setCollapsed,
-                                                                            setToggled,
-                                                                            broken,
-                                                                        }) => {
+    setCollapsed,
+    setToggled,
+    broken,
+}) => {
     const confirm = useConfirm();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const {width} = useWindowDimensions()
+    const { width } = useWindowDimensions()
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const {loading} = useAppSelector((state) => state.loading);
+    const { loading } = useAppSelector((state) => state.loading);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState<null | HTMLElement>(null);
 
@@ -64,7 +64,7 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
                 confirmationText: t("navbar.confirm.ok"),
                 cancellationText: t("navbar.confirm.cancel"),
             }).then(() => {
-                dispatch(userActions.setState({language}));
+                dispatch(userActions.setState({ language }));
                 HRMStorage.set(KEY_VALUE.LANGUAGE, language);
                 window.location.reload();
             });
@@ -131,15 +131,18 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
                     width: "248px",
                     padding: "4px",
                 }}>
-                <MenuItem onClick={handleMenuClose}>
+                <MenuItem onClick={() => {
+                    navigate("/home");
+                    handleMenuClose();
+                }}>
                     <Badge badgeContent={4} color="error">
-                        <Person2Icon/>
+                        <Person2Icon />
                     </Badge>
-                    <p style={{marginLeft: "12px"}}> {t("navbar.profile")}</p>
+                    <p style={{ marginLeft: "12px" }}> {t("navbar.profile")}</p>
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>
-                    <LogoutIcon/>
-                    <p style={{marginLeft: "12px"}}>{t("navbar.logout")}</p>
+                    <LogoutIcon />
+                    <p style={{ marginLeft: "12px" }}>{t("navbar.logout")}</p>
                 </MenuItem>
                 <Typography
                     sx={{
@@ -213,7 +216,7 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
             <MenuItem>
                 <IconButton size="large" aria-label="show 4 new mails">
                     <Badge badgeContent={4} color="error">
-                        <MailIcon/>
+                        <MailIcon />
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
@@ -221,7 +224,7 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
             <MenuItem>
                 <IconButton size="large" aria-label="show 17 new notifications">
                     <Badge badgeContent={17} color="error">
-                        <NotificationsIcon/>
+                        <NotificationsIcon />
                     </Badge>
                 </IconButton>
                 <p>Notifications</p>
@@ -232,7 +235,7 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true">
-                    <AccountCircle/>
+                    <AccountCircle />
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
@@ -241,7 +244,7 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
 
     return (
         <>
-            <Box sx={{flexGrow: 1}}>
+            <Box sx={{ flexGrow: 1 }}>
                 <AppBar
                     sx={{
                         backgroundColor: "transparent",
@@ -256,18 +259,18 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
                             size="large"
                             edge="start"
                             aria-label="open drawer"
-                            sx={{mr: 2}}
+                            sx={{ mr: 2 }}
                             onClick={broken ? setToggled : setCollapsed}>
-                            <MenuIcon/>
+                            <MenuIcon />
                         </IconButton>
                         <Typography
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{display: {xs: "none", sm: "block"}}}></Typography>
+                            sx={{ display: { xs: "none", sm: "block" } }}></Typography>
 
-                        <Box sx={{flexGrow: 1}}/>
-                        <Box sx={{display: {xs: "none", md: "flex"}}}>
+                        <Box sx={{ flexGrow: 1 }} />
+                        <Box sx={{ display: { xs: "none", md: "flex" } }}>
                             {/* <IconButton size="large" aria-label="show 4 new mails">
                 <Badge badgeContent={4} color="error">
                   <MailIcon />
@@ -285,17 +288,17 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
                                 aria-controls={menuId}
                                 aria-haspopup="true"
                                 onClick={handleProfileMenuOpen}>
-                                <AccountCircle/>
+                                <AccountCircle />
                             </IconButton>
                         </Box>
-                        <Box sx={{display: {xs: "flex", md: "none"}}}>
+                        <Box sx={{ display: { xs: "flex", md: "none" } }}>
                             <IconButton
                                 size="large"
                                 aria-label="show more"
                                 aria-controls={mobileMenuId}
                                 aria-haspopup="true"
                                 onClick={handleMobileMenuOpen}>
-                                <MoreIcon/>
+                                <MoreIcon />
                             </IconButton>
                         </Box>
                     </Toolbar>
@@ -311,7 +314,7 @@ export const PrimarySearchAppBar: React.FC<PrimarySearchAppBarProps> = ({
                 }}>
                 {loading && (
                     <LinearProgress
-                        sx={{position: "absolute", top: 0, left: 0, right: 0}}
+                        sx={{ position: "absolute", top: 0, left: 0, right: 0 }}
                     />
                 )}
             </Box>

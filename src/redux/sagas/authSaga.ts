@@ -25,14 +25,12 @@ function* handleLogin(payload: LoginPayload) {
 
         yield put(authActions.loginSuccess(result.content));
       } else {
-        yield put(
-          authActions.loginFailed("Tài khoản hoặc mật khẩu không đúng")
-        );
-        toastMessage("Tài khoản hoặc mật khẩu không đúng", "error");
+        yield put(authActions.loginFailed(result.message));
+        toastMessage(result.message, "error");
       }
     } else {
-      yield put(authActions.loginFailed("Tài khoản hoặc mật khẩu không đúng"));
-      toastMessage("Tài khoản hoặc mật khẩu không đúng", "error");
+      yield put(authActions.loginFailed("Có lỗi xảy ra"));
+      toastMessage("Có lỗi xảy ra", "error");
     }
   } catch (error: any) {
     yield put(authActions.loginFailed(error.message));

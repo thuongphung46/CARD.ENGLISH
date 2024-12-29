@@ -10,6 +10,7 @@ export interface IUser {
   expirationDate?: string;
   remainingBalance?: number;
   avatarBase64?: string;
+  [key: string]: any;
 }
 export interface IPin {
   oldPin: string;
@@ -40,9 +41,16 @@ export const AuthService = {
   Update: async (user: IUser) => {
     return await Request(Controller).postAsync("update", user);
   },
-  Recharge: async (remainingBalance: number) => {
+  Recharge: async ({
+    memberId,
+    remainingBalance,
+  }: {
+    memberId?: string;
+    remainingBalance?: number;
+  }) => {
     return await Request(Controller).postAsync("recharge", {
       remainingBalance: remainingBalance,
+      memberId: memberId,
     });
   },
   ChangePin: async (data: IPin) => {
@@ -53,5 +61,8 @@ export const AuthService = {
   },
   Payment: async (data: IPayment) => {
     return await Request(Controller).postAsync("payment", data);
+  },
+  UnlockCard: async () => {
+    return await Request(Controller).postAsync("unlock", {});
   },
 };

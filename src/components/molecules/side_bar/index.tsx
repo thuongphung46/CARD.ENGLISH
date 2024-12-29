@@ -13,13 +13,12 @@ import {
 import { SidebarHeader } from "./sidebar_header";
 import { SidebarFooter } from "./sidebar_footer";
 import { themes } from "@constants/themes/styles";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { KEY_VALUE } from "@constants/GlobalConstant";
 import HRMStorage from "@common/function";
 import { t } from "i18next";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { userActions } from "@/redux/slices/userSlice";
-import { RootState } from "@/redux/store";
 import { menuItems } from "./index.path";
 
 // hex to rgba converter
@@ -54,6 +53,7 @@ export const Playground: React.FC<SidebarProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const [dissable, setDissable] = useState(false);
   const rtl = false;
   const hasImage = true;
@@ -145,6 +145,7 @@ export const Playground: React.FC<SidebarProps> = ({
           style={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <SidebarHeader
             rtl={rtl}
+            onClick={() => navigate("/home")}
             style={{ marginBottom: "24px", marginTop: "16px" }}
           />
           <div style={{ flex: 1, marginBottom: "32px" }}>
