@@ -44,13 +44,16 @@ export const AuthService = {
   Recharge: async ({
     memberId,
     remainingBalance,
+    pinCode
   }: {
     memberId?: string;
     remainingBalance?: number;
+    pinCode?: string;
   }) => {
     return await Request(Controller).postAsync("recharge", {
       remainingBalance: remainingBalance,
       memberId: memberId,
+      pinCode: pinCode
     });
   },
   ChangePin: async (data: IPin) => {

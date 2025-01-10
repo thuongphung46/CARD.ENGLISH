@@ -99,6 +99,11 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({ }) => {
             }
         });
     }, [state]);
+
+    const formatNumber = (value: number | string) => {
+        if (value === "" || value === 0) return "";
+        return new Intl.NumberFormat("en-US").format(Number(value));
+    };
     return (
         <Fragment> <Box component="form"
             sx={{ '& .MuiTextField-root': { mt: 1, width: '100%', p: 1, } }}>
@@ -149,12 +154,19 @@ export const PaymentTemplate: FC<CategoryTemplateProps> = ({ }) => {
                 id="totalBill"
                 name="totalBill"
                 label={t("common.total_bill")}
-                value={state.totalBill}
+                value={formatNumber(state.totalBill)}
                 disabled
                 fullWidth
                 sx={{ maxWidth: 500 }}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            VNĐ
+                        </InputAdornment>
+                    ),
+                }}
                 defaultValue={0}
-            ></TextField>
+            />
             <TextField
                 id="pinCode"
                 name="pinCode"
